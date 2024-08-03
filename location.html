@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EUPHORIA - Location</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
+          <title>Clinking Wine Glasses Logo</title>
+          <g fill="none" stroke="#000000" stroke-width="2">
+
+            <path d="M20 2c10 0 14 6 14 14 0 10-14 30-14 30s-14-20-14-30c0-8 4-14 14-14z" fill="#FFFFFF"/>
+            <line x1="20" y1="46" x2="20" y2="62"/>
+            <line x1="10" y1="62" x2="30" y2="62"/>
+          
+            <path d="M44 2c10 0 14 6 14 14 0 10-14 30-14 30s-14-20-14-30c0-8 4-14 14-14z" fill="#FFFFFF"/>
+            <line x1="44" y1="46" x2="44" y2="62"/>
+            <line x1="34" y1="62" x2="54" y2="62"/>
+          </g>
+        </svg>
+        EUPHORIA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="location.html">Location</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Location Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center">Our Location</h2>
+      <div id="map"></div>
+      <div class="text-center mt-3">
+        <a id="googleMapsLink" href="#" target="_blank" class="btn btn-primary">Navigate to Google Maps</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-light text-center py-3">
+    <div class="container">
+      <p class="mb-0">&copy; 2024 EUPHORIA. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    window.onload = event => {
+      console.log("Page is loaded");
+
+     
+      const latitude = 13.023182829573777;
+      const longitude = 77.64523535987806;
+
+      
+      console.log("Map");
+      var map = L.map('map').setView([latitude, longitude], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      L.marker([latitude, longitude]).addTo(map)
+        .bindPopup('EUPHORIA Event Management')
+        .openPopup();
+
+
+      document.getElementById('googleMapsLink').href = `https://www.google.com/maps?q= ${latitude},${longitude}`;
+    }
+  </script>
+</body>
+</html>
